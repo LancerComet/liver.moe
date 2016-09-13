@@ -18,16 +18,14 @@ const sceneData = [
     assets: {
       'bg': `${$scenePrefix} bg`,
       '33': `${$scenePrefix} c-33 normal p-r bg-no-r bg-contain z-1`
-    },
-    next: `${$scenePrefix}-02`
+    }
   },
   {
     uid: `${$scenePrefix}-02`,
     type: 'dialog',
     dialog: [
       { character: '33', content: '嗯哼，这里是 33，现在在比利 ♂ 比利校园的门口。。给大家直播。。。' }
-    ],
-    next: `${$scenePrefix}-03`
+    ]
   },
   {
     uid: `${$scenePrefix}-03`,
