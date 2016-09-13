@@ -41,7 +41,7 @@ export default class StoryLine {
    *  读取上一个场景.
    *  @return { Boolean }
    */
-  prevSense () {
+  prevScene () {
     if (this.$currentNode.$prev.$isHead) return false
     this.$currentNode = this.$currentNode.$prev
     return true
@@ -51,7 +51,7 @@ export default class StoryLine {
    *  读取下一个场景方法.
    *  @return { Boolean }
    */
-  nextSense () {
+  nextScene () {
     if (!this.$currentNode.$next) return false
     this.$currentNode = this.$currentNode.$next
     return true
@@ -113,7 +113,7 @@ export default class StoryLine {
    *  观察回调注册方法.
    *  当调用 process 进入下一场景后执行注册的函数.
    */
-  observeNextSense (...args) {
+  observeNextScene (...args) {
 
   }
 

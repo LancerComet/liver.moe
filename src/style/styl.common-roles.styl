@@ -11,11 +11,24 @@
   height: 100%
 
 // Position.
+.p-r
+  position: relative
+
 .m-auto
   margin: 0 auto
+
+for $num in (1 ... 5)
+  .z-{$num}
+    z-index: $num
 
 // Text.
 .t-center
 .t-c
   text-align: center
 
+// Visual.
+.bg-no-r
+  background-repeat: no-repeat
+
+.bg-contain
+  background-size: contain

@@ -1,36 +1,36 @@
 /*
- *  Sense 01 Data By LancerComet at 16:39, 2016.09.12.
+ *  Scene 01 Data By LancerComet at 16:39, 2016.09.12.
  *  # Carry Your World #
  *  ---
  *  场景 01 数据.
  */
 
-import './sense-01.styl'
-const $sensePrefix = 'sense-01'
+import './scene-01.styl'
+const $scenePrefix = 'scene-01'
 
-const senseData = [
+const sceneData = [
   {
-    uid: `${$sensePrefix}-01`,
+    uid: `${$scenePrefix}-01`,
     type: 'dialog',
     dialog: [
       { character: '33', content: 'Test~ 嗯~ 貌似连上了呢', className: 'dialog-pop-normal' }
     ],
     assets: {
-      'bg': `${$sensePrefix}-bg`,
-      '33': `${$sensePrefix} 33-normal`
+      'bg': `${$scenePrefix} bg`,
+      '33': `${$scenePrefix} c-33-normal p-r bg-no-r bg-contain z-1`
     },
-    next: `${$sensePrefix}-02`
+    next: `${$scenePrefix}-02`
   },
   {
-    uid: `${$sensePrefix}-02`,
+    uid: `${$scenePrefix}-02`,
     type: 'dialog',
     dialog: [
       { character: '33', content: '嗯哼，这里是 33，现在在比利 ♂ 比利校园的门口。。给大家直播。。。' }
     ],
-    next: `${$sensePrefix}-03`
+    next: `${$scenePrefix}-03`
   },
   {
-    uid: `${$sensePrefix}-03`,
+    uid: `${$scenePrefix}-03`,
     type: 'dialog',
     dialog: [
       { character: '33', content: '。。。' }
@@ -42,8 +42,8 @@ const senseData = [
   }
 ]
 
-senseData.forEach(item => {
+sceneData.forEach(item => {
   if (!item.assets) item.assets = {}
 })
 
-export default senseData
+export default sceneData

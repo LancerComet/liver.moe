@@ -7,15 +7,15 @@
  *  @export { Function }
  *  @return void
  */
-import SENSE_DATA_01 from '../../data/sense-01'
+import SENSE_DATA_01 from '../../data/scene-01'
 
 export default function () {
   // 读取游戏场景数据并插入 storyLine.
-  SENSE_DATA_01.forEach(senseNode => {
-    this.storyLine.insertNode(senseNode)
+  SENSE_DATA_01.forEach(sceneNode => {
+    this.storyLine.insertNode(sceneNode)
   })
 
   // 设置第一个游戏场景.
-  this.storyLine.nextSense()
+  this.storyLine.nextScene()
 }
 
