@@ -17,7 +17,7 @@ const sceneData = [
     ],
     assets: {
       'bg': `${$scenePrefix} bg`,
-      '33': `${$scenePrefix} c-33-normal p-r bg-no-r bg-contain z-1`
+      '33': `${$scenePrefix} c-33 normal p-r bg-no-r bg-contain z-1`
     },
     next: `${$scenePrefix}-02`
   },
@@ -36,7 +36,7 @@ const sceneData = [
       { character: '33', content: '。。。' }
     ],
     assets: {
-      '33': null
+      '33': `${$scenePrefix} c-33 embarrassed p-r bg-no-r bg-contain z-1`
     },
     next: null
   }
