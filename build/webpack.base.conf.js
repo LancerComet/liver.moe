@@ -5,7 +5,7 @@ var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/index.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -51,8 +51,16 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.jade/,
+        loader: 'jade'
+      },
+      {
         test: /\.json$/,
         loader: 'json'
+      },
+      {
+        test: /\.styl$/,
+        loader: 'stylus'
       },
       {
         test: /\.html$/,
