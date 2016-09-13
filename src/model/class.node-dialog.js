@@ -20,11 +20,12 @@ import Node from './class.node'
 
 export default class NodeDialog extends Node {
   constructor ({
-    $uid, $prev, $next, $nextUID,
-    character = '', dialog = '',
-    assets = null
+    $uid, $prev, $prevUID, $next, $nextUID,
+    dialog = [],
+    assets = {}
   }) {
-    super({ $uid, $prev, $next, $nextUID, $assets: assets })
+    super({ $uid, $prev, $prevUID, $next, $nextUID, $assets: assets })
+    this.$type = 'dialog'
     this.dialog = dialog
   }
 }

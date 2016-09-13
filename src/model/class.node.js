@@ -19,13 +19,18 @@ export default class Node {
   constructor ({
     $uid = utils.uid(),
     $prev = null,
+    $prevUID = '',
     $next = null,
     $nextUID = '',
     $assets = []
   }) {
     this.$uid = $uid
+
     this.$assets = $assets
+
     this.$prev = $prev
+    this.$prevUID = $prevUID
+
     this.$next = $next
     this.$nextUID = $nextUID
   }

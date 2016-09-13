@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export default function () {
-  const assets = this.storyLine.$currentNode.assets
+  const assets = this.storyLine.$currentNode.$assets
   if (!assets) { return }
 
   Object.keys(assets).forEach(assetName => {

@@ -9,8 +9,17 @@
 
     //- 游戏场景.
     div.game-scene.p-r.m-auto
+      //- 场景物件.
       div.asset-ctnr.h-100
         div(v-for="asset in assetNodes", :class="asset")
+
+      //- 对话组件.
+      chat-popup.chat-popup-component.p-a(
+        v-for="dialog in storyLine.$currentNode.dialog",
+        v-show="storyLine.$currentNode.$type === 'dialog'",
+        :name="dialog.character",
+        :content="dialog.content"
+      )
 
     //- UI 界面容器.
     div.ui-widgets-ctnr.t-c
@@ -21,8 +30,8 @@
 
 <style lang="stylus">
   $gameScene = {
-    width: 450px
-    height: 700px
+    width: 600px
+    height: 800px
     backgroundColor: aliceblue
   }
 
@@ -42,6 +51,11 @@
           background-size: cover
           z-index: 0
 
+    .chat-popup-component
+      bottom: 20px
+      left: 0
+      z-index: 10
+
     .ui-widgets-ctnr
       margin-top: 20px
 </style>
@@ -52,12 +66,18 @@
   import initGameData from './methods.init-game-data'
   import assetGenerator from './computed.asset-generator'
 
+  import ChatPopup from '../chat-popup/index.vue'
+
   export default {
     data () {
       return {
         storyLine: new Model.StoryLine({}),
         assetNodes: {}
       }
+    },
+
+    components: {
+      ChatPopup
     },
 
     methods: {
