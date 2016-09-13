@@ -29,19 +29,12 @@ export default class StoryLine {
     this.$id = $id
     this.name = name || $id
 
+    // 设置头节点.
     this.$head = new Node({})
     this.$head.$isHead = true
 
-    var $currentNode = this.$head
-    Object.defineProperty(this, '$currentNode', {
-      get () {
-        return $currentNode
-      },
-      set (newVal) {
-        console.log('visitor')
-        $currentNode = newVal
-      }
-    })
+    // 将当前节点设置为头节点.
+    this.$currentNode = this.$head
   }
 
   /**
@@ -93,7 +86,6 @@ export default class StoryLine {
    */
   insertNode (newNode) {
     var lastNode = this.findLast()
-    console.log(lastNode)
     lastNode.$next = newNode
     newNode.$prev = lastNode
   }

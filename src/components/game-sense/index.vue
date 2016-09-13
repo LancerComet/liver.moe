@@ -20,7 +20,6 @@
   }
 
   .game-sense-ctnr
-
     .game-sense
       width: $gameSense.width
       height: $gameSense.height
@@ -31,8 +30,20 @@
 </style>
 
 <script>
+  import * as Model from '../../model'
+
+  import initGameData from './methods.init-game-data'
+
   export default {
+    data () {
+      return {
+        storyLine: new Model.StoryLine({})
+      }
+    },
+
     methods: {
+      initGameData,
+
       prevSense () {
 
       },
@@ -40,6 +51,10 @@
       nextSense () {
 
       }
+    },
+
+    ready () {
+      this.initGameData()
     }
   }
 </script>
