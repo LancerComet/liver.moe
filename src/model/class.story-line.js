@@ -38,12 +38,23 @@ export default class StoryLine {
   }
 
   /**
+   *  读取上一个场景.
+   *  @return { Boolean }
+   */
+  prevSense () {
+    if (this.$currentNode.$prev.$isHead) return false
+    this.$currentNode = this.$currentNode.$prev
+    return true
+  }
+
+  /**
    *  读取下一个场景方法.
-   *  @return void
+   *  @return { Boolean }
    */
   nextSense () {
     if (!this.$currentNode.$next) return false
     this.$currentNode = this.$currentNode.$next
+    return true
   }
 
   /**

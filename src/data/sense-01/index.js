@@ -8,7 +8,7 @@
 import './sense-01.styl'
 const $sensePrefix = 'sense-01'
 
-export default [
+const senseData = [
   {
     uid: `${$sensePrefix}-01`,
     type: 'dialog',
@@ -16,9 +16,8 @@ export default [
       { character: '33', content: 'Test~ 嗯~ 貌似连上了呢', className: 'dialog-pop-normal' }
     ],
     assets: {
-      bg: `${$sensePrefix}-bg`,
-      22: `${$sensePrefix}-22`,
-      33: `${$sensePrefix}-33-normal`
+      'bg': `${$sensePrefix}-bg`,
+      '33': `${$sensePrefix} 33-normal`
     },
     next: `${$sensePrefix}-02`
   },
@@ -36,6 +35,15 @@ export default [
     dialog: [
       { character: '33', content: '。。。' }
     ],
+    assets: {
+      '33': null
+    },
     next: null
   }
 ]
+
+senseData.forEach(item => {
+  if (!item.assets) item.assets = {}
+})
+
+export default senseData

@@ -6,10 +6,17 @@
 -->
 <template lang="jade">
   div.game-sense-ctnr
+
+    //- 游戏场景.
     div.game-sense.m-auto
-    div.ctrl-btns-ctnr.t-c
-      button(@click="") prevSense
-      button(@click="") nextSense
+      div.asset-ctnr
+        div(v-for="asset in assetNodes", :class="asset") {{asset}}
+
+    //- UI 界面容器.
+    div.ui-widgets-ctnr.t-c
+      button(@click="prevSense") prevSense
+      button(@click="nextSense") nextSense
+
 </template>
 
 <style lang="stylus" scoped>
@@ -25,7 +32,7 @@
       height: $gameSense.height
       background-color: $gameSense.backgroundColor
 
-    .ctrl-btns-ctnr
+    .ui-widgets-ctnr
       margin-top: 20px
 </style>
 
@@ -33,11 +40,13 @@
   import * as Model from '../../model'
 
   import initGameData from './methods.init-game-data'
+  import assetGenerator from './computed.asset-generator'
 
   export default {
     data () {
       return {
-        storyLine: new Model.StoryLine({})
+        storyLine: new Model.StoryLine({}),
+        assetNodes: {}
       }
     },
 
@@ -45,12 +54,16 @@
       initGameData,
 
       prevSense () {
-
+        this.storyLine.prevSense()
       },
 
       nextSense () {
-
+        this.storyLine.nextSense()
       }
+    },
+
+    watch: {
+      'storyLine.$currentNode': assetGenerator
     },
 
     ready () {
