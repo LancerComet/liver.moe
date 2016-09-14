@@ -15,6 +15,13 @@ const className = {
 
 const sceneData = [
   {
+    uid: `${$scenePrefix}-start`,
+    type: 'dialog',
+    assets: {
+      'bg': `${$scenePrefix} bg`
+    }
+  },
+  {
     uid: `${$scenePrefix}-01`,
     type: 'dialog',
     dialog: [
@@ -89,8 +96,15 @@ const sceneData = [
   }
 ]
 
-sceneData.forEach(item => {
+sceneData.forEach((item, index) => {
+  // 设置默认 assets 属性.
   if (!item.assets) item.assets = {}
+
+  // 设置节点默认 next.
+  if (sceneData[index + 1]) {
+    if (item.next === null) return
+    item.next = sceneData[index + 1].uid
+  }
 })
 
 export default sceneData

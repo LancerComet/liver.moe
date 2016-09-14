@@ -6,7 +6,7 @@
 -->
 <template lang="jade">
   div.option-component-ctnr
-    div.option-item(v-for="optionData in optionsData")
+    div.option-item(v-for="optionData in optionsData", @click="chooseOption(optionData)")
       span(v-text="optionData.label")
       span(v-text="optionData.content")
 </template>
@@ -30,6 +30,12 @@
    *  @property { String } gotoUID - 该选项将要跳转节点的 UID.
    */
   export default {
-    props: ['optionsData']
+    props: ['optionsData'],
+
+    methods: {
+      chooseOption (optionData) {
+        console.log('chooseOption', optionData)
+      }
+    }
   }
 </script>

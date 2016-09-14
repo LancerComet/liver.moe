@@ -27,7 +27,8 @@ export default class StoryLine {
     name = ''
   }) {
     this.$id = $id
-    this.name = name || $id
+    this.$name = name || $id
+    this.$nodes = {}
 
     // 设置头节点.
     this.$head = new Node({})
@@ -38,7 +39,24 @@ export default class StoryLine {
   }
 
   /**
-   *  读取上一个场景.
+   *  游戏场景节点载入方法.
+   *  用作 storyLine 创建完毕后载入第一个场景用.
+   *  @return void
+   */
+  initScene () {
+    var startScene = null
+    return Object.keys(this.$nodes).some(uid => {
+      if (uid.indexOf('start') > -1) {
+        startScene = this.findNode(uid)
+        this.$currentNode = startScene
+        this.$currentNode.$prev = this.$head
+        return true
+      }
+    })
+  }
+
+  /**
+   *  读取上一个场景函数.
    *  @return { Boolean }
    */
   prevScene () {
@@ -52,9 +70,27 @@ export default class StoryLine {
    *  @return { Boolean }
    */
   nextScene () {
-    if (!this.$currentNode.$next) return false
-    this.$currentNode = this.$currentNode.$next
+    const nextSceneNode = this.generateScene()
+    if (!nextSceneNode) return false
+    this.$currentNode = nextSceneNode
     return true
+  }
+
+  /**
+   *  生成节点方法.
+   *  节点默认存储在 this.$nodes 中, 当游戏读取到某个节点时会即使生成下一个节点.
+   *  @return { Node | false }
+   */
+  generateScene () {
+    const nextSceneUID = this.$currentNode.$nextUID
+    if (!nextSceneUID) return false  // 如果没有下一个场景 UID 则返回 false.
+    const nextSceneNode = this.findNode(nextSceneUID)
+    if (!nextSceneNode) return false  // 如果没有下一个场景节点则返回 false.
+
+    // 设置节点信息.
+    nextSceneNode.$prev = this.$currentNode
+    nextSceneNode.$prevUID = this.$currentNode.$uid
+    return nextSceneNode
   }
 
   /**
@@ -80,25 +116,37 @@ export default class StoryLine {
   /**
    *  寻找节点函数, 返回目标节点.
    *  @param { string } uid - 节点 UID.
-   *  @return { Node }
+   *  @return { Node | null }
    */
   findNode (uid) {
-    var result = this.$head
-    while (result.$uid !== uid) {
-      result = result.$next
-    }
-    return result
+    return this.$nodes[uid] || null
   }
 
   /**
    *  插入节点函数.
-   *  @param { Node } newNode - 新插入节点..
-   *  @return void
+   *  @param { Node } newNode - 新插入节点.
+   *  @return { Boolean }
    */
   insertNode (newNode) {
     var lastNode = this.findLast()
     lastNode.$next = newNode
     newNode.$prev = lastNode
+    return true
+  }
+
+  /**
+   *  登记节点函数.
+   *  将本 storyLine 中的节点的登记在 this.$nodes 中.
+   *  @param { Node } newNode - 需要登记的节点.
+   *  @return { Boolean }
+   */
+  registerNode (newNode) {
+    const nodeUID = newNode.$uid
+    if (!nodeUID || this.$nodes[nodeUID]) return false
+
+    // 将节点登记在 this.$nodes 对象中.
+    this.$nodes[nodeUID] = newNode
+    return true
   }
 
   /**

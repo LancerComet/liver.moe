@@ -37,6 +37,10 @@ function insertSceneData (sceneData) {
         break
     }
 
-    this.storyLine.insertNode(newNode)
+    // 将节点注册在 storyLine 中.
+    this.storyLine.registerNode(newNode)
+
+    // 初始化游戏.
+    this.storyLine.initScene()
   })
 }
