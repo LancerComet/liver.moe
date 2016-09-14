@@ -29,8 +29,12 @@ function insertSceneData (sceneData) {
 
     switch (nodeInfo.type) {
       case 'dialog':
-        console.log('dialog')
         newNode = dataTrans.nodeDialog(nodeInfo)
+        break
+
+      case 'option':
+        newNode = dataTrans.nodeOption(nodeInfo)
+        break
     }
 
     this.storyLine.insertNode(newNode)

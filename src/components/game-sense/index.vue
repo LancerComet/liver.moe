@@ -6,9 +6,9 @@
 -->
 <template lang="jade">
   div.game-scene-ctnr
-
     //- 游戏场景.
     div.game-scene.p-r.m-auto
+
       //- 场景物件.
       div.asset-ctnr.h-100
         div(v-for="asset in assetNodes", :class="asset")
@@ -21,11 +21,13 @@
         :content="dialog.content"
       )
 
+      //- 选项组件.
+      option-component.option-component(v-if="storyLine.$currentNode.$type === 'option'", :options-data="storyLine.$currentNode.options")
+
     //- UI 界面容器.
     div.ui-widgets-ctnr.t-c
       button(@click="prevScene") prevScene
       button(@click="nextScene") nextScene
-
 </template>
 
 <style lang="stylus">
@@ -67,6 +69,7 @@
   import assetGenerator from './computed.asset-generator'
 
   import ChatPopup from '../chat-popup/index.vue'
+  import OptionComponent from '../option-component/index.vue'
 
   export default {
     data () {
@@ -77,7 +80,7 @@
     },
 
     components: {
-      ChatPopup
+      ChatPopup, OptionComponent
     },
 
     methods: {

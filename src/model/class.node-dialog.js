@@ -4,6 +4,8 @@
  *  ---
  *  游戏对话节点类型.
  *  ---
+ *  @constructor
+ *
  *  @typedef { Node } NodeDialog
  *  @property { string } character - 当前对话对应的角色.
  *  @property { string } dialog - 当前对话内容.
