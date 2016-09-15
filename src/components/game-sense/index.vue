@@ -28,6 +28,10 @@
     div.ui-widgets-ctnr.t-c
       button(@click="prevScene") prevScene
       button(@click="nextScene") nextScene
+
+    //- Debug Panel.
+    - console.log(process.env.NODE_ENV)
+
 </template>
 
 <style lang="stylus">

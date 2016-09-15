@@ -67,10 +67,11 @@ export default class StoryLine {
 
   /**
    *  读取下一个场景方法.
+   *  @param { String | null } targetUID - 目标场景的 UID.
    *  @return { Boolean }
    */
-  nextScene () {
-    const nextSceneNode = this.generateScene()
+  nextScene (targetUID = null) {
+    const nextSceneNode = this.generateScene(targetUID)
     if (!nextSceneNode) return false
     this.$currentNode = nextSceneNode
     return true
@@ -79,10 +80,11 @@ export default class StoryLine {
   /**
    *  生成节点方法.
    *  节点默认存储在 this.$nodes 中, 当游戏读取到某个节点时会即使生成下一个节点.
+   *  @param { String | null } targetUID - 目标场景的 UID.
    *  @return { Node | false }
    */
-  generateScene () {
-    const nextSceneUID = this.$currentNode.$nextUID
+  generateScene (targetUID) {
+    const nextSceneUID = targetUID || this.$currentNode.$nextUID
     if (!nextSceneUID) return false  // 如果没有下一个场景 UID 则返回 false.
     const nextSceneNode = this.findNode(nextSceneUID)
     if (!nextSceneNode) return false  // 如果没有下一个场景节点则返回 false.

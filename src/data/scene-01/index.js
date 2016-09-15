@@ -67,8 +67,8 @@ const sceneData = [
     uid: `${$scenePrefix}-06`,
     type: 'option',
     options: [
-      { label: 'A', content: '黑人问号？？', gotoUID: `${$scenePrefix}-B-01` },
-      { label: 'B', content: '无可奉告！！', gotoUID: `${$scenePrefix}-B-02` }
+      { label: 'A', content: '黑人问号？？', gotoUID: `${$scenePrefix}-A-01` },
+      { label: 'B', content: '无可奉告！！', gotoUID: `${$scenePrefix}-B-01` }
     ],
     next: null
   },
@@ -96,6 +96,9 @@ const sceneData = [
   }
 ]
 
+console.log(process.env.NODE_ENV)
+
+// 设置默认数据.
 sceneData.forEach((item, index) => {
   // 设置默认 assets 属性.
   if (!item.assets) item.assets = {}

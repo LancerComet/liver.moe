@@ -5,16 +5,36 @@
     Option Component.
 -->
 <template lang="jade">
-  div.option-component-ctnr
-    div.option-item(v-for="optionData in optionsData", @click="chooseOption(optionData)")
+  div.option-component-ctnr.p-a
+    button.option-item(v-for="optionData in optionsData", @click="chooseOption(optionData)")
       span(v-text="optionData.label")
       span(v-text="optionData.content")
 </template>
 
 <style lang="stylus">
+  $optionComponent = {
+    width: 400px
+    height: 400px
+  }
+
+  .option-component-ctnr
+    width: $optionComponent.width
+    height: $optionComponent.height
+    top: 50%
+    left: 50%
+    margin: ($optionComponent.width * -.5) ($optionComponent.height * -.5)
+    z-index: 1
+
+    .option-item
+      display: block
+      width: 100%
+      margin: 10px 0
+      padding: 20px 0
+
 </style>
 
 <script>
+  import EventBus from '../../event-bus'
   /**
    *  传入参数: 对话数据存储数组对象.
    *  ---
@@ -34,8 +54,21 @@
 
     methods: {
       chooseOption (optionData) {
-        console.log('chooseOption', optionData)
+        const gotoUID = optionData.gotoUID
+        const storyLine = this.$parent.storyLine  // 当前直接从父级组件获取 storyLine.
+        if (gotoUID) {
+          storyLine.nextScene(gotoUID)
+          return true
+        } else {
+          return false
+        }
       }
+    },
+
+    ready () {
+      EventBus.$on('Option:choose', (option) => {
+
+      })
     }
   }
 </script>
