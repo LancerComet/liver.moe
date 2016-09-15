@@ -13,17 +13,19 @@
  *  @property { String } $nextUID
  *  @property { Array } options
  *  @property { Object } assets
+ *  @property { String } $nextScene
  *
  *  @return { NodeOptionParam }
  */
 export default class NodeOptionParam {
   constructor ({
-    uid, prev, next, options, assets
+    uid, prev, next, options, assets, nextScene
   }) {
     this.$uid = uid
     this.$prevUID = prev
     this.$nextUID = next
     this.options = options
     this.assets = assets
+    this.$nextScene = nextScene
   }
 }

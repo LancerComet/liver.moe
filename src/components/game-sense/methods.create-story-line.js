@@ -1,18 +1,33 @@
 /**
- *  methods.init-game-data By LancerComet at 21:40, 2016/9/13.
+ *  methods.create-story-line By LancerComet at 21:40, 2016/9/13.
  *  # Carry Your World #
  *  ---
- *  游戏数据初始化方法.
+ *  StoryLine 数据生成方法.
  *
  *  @export { Function }
+ *
+ *  @param { String } targetScene - 目标场景名称.
  *  @return void
  */
 import { dataTrans } from '../../services'
-import SENSE_DATA_01 from '../../data/scene-01'
 
-export default function () {
-  // 读取 Scene 01 数据.
-  insertSceneData.call(this, SENSE_DATA_01)
+import * as GAME_DATA from '../../data/'
+import * as Model from '../../model'
+
+export default function (targetScene) {
+  // Error Handler.
+  if (!GAME_DATA[targetScene]) {
+    throw new Error(`GameScene.methods.createStoryLine: 不存在场景 "${targetScene}", 游戏中止.`)
+  }
+
+  // 清理 this.assetNodes.
+  this.assetNodes = {}
+
+  // 创建新的 storyLine.
+  this.storyLine = new Model.StoryLine({ name: targetScene })
+
+  // 读取目标场景数据.
+  insertSceneData.call(this, GAME_DATA[targetScene])
 
   // 设置第一个游戏场景.
   this.storyLine.nextScene()

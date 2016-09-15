@@ -13,17 +13,19 @@
  *  @property { String } $nextUID
  *  @property { Array } dialog
  *  @property { Object } assets
+ *  @property { String } $nextScene
  *
  *  @return { NodeDialogParam }
  */
 export default class NodeDialogParam {
   constructor ({
-    uid, prev, next, dialog, assets
+    uid, prev, next, dialog, assets, nextScene
   }) {
     this.$uid = uid
     this.$prevUID = prev
     this.$nextUID = next
     this.dialog = dialog
     this.assets = assets
+    this.$nextScene = nextScene
   }
 }

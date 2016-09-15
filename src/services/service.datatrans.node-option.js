@@ -10,6 +10,7 @@ import { NodeOption, NodeOptionParam } from '../model'
  *  @property { Array } options
  *  @property { Object } assets
  *  @property { String } next
+ *  @property { String } nextScene
  *
  *  @param { nodeInfo } nodeInfo
  */

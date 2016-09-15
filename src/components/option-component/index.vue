@@ -6,7 +6,7 @@
 -->
 <template lang="jade">
   div.option-component-ctnr.p-a
-    button.option-item(v-for="optionData in optionsData", @click="chooseOption(optionData)")
+    button.option-item(v-for="optionData in optionsData", @click.stop="chooseOption(optionData)")
       span(v-text="optionData.label")
       span(v-text="optionData.content")
 </template>

@@ -66,8 +66,8 @@ const sceneData = [
     uid: `${$scenePrefix}-06`,
     type: 'option',
     options: [
-      { label: 'A', content: '黑人问号？？', gotoUID: `${$scenePrefix}-A-01` },
-      { label: 'B', content: '无可奉告！！', gotoUID: `${$scenePrefix}-B-01` }
+      { label: 'A', content: '黑人问号？？（游戏会停止）', gotoUID: `${$scenePrefix}-A-01` },
+      { label: 'B', content: '无可奉告！！（将进入下一场景）', gotoUID: `${$scenePrefix}-B-01` }
     ],
     next: null
   },
@@ -90,8 +90,12 @@ const sceneData = [
     ],
     assets: {
       '33': `${className[33]} smile`
-    },
-    next: null
+    }
+  },
+  {
+    uid: `${$scenePrefix}-end`,
+    type: 'dialog',
+    nextScene: 'SCENE_02'
   }
 ]
 

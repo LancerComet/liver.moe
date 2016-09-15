@@ -6,7 +6,7 @@
 -->
 <template lang="jade">
   div.chat-popup-ctnr.w-100
-    div.chat-popup.m-auto
+    div.chat-popup.m-auto.b-box
       div.name(v-text="name")
       div.content(v-text="content")
 </template>
@@ -15,14 +15,25 @@
   $chatPopup = {
     width: 500px
     height: 236px
+    padding: 20px
+    color: #fff
   }
 
   .chat-popup
     width: $chatPopup.width
     height: $chatPopup.height
+    padding: $chatPopup.padding
     background-image: url('./assets/chat-popup-bg.png')
     background-repeat: no-repeat
     background-size: contain
+    color: $chatPopup.color
+    font-family: "微软雅黑"
+
+    .name
+      font-size: 18px
+
+    .content
+      font-size: 20px
 </style>
 
 <script>

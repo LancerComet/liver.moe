@@ -6,10 +6,11 @@
  *  游戏中所有的节点的基础类型结构, 其他所有类型的节点都为此节点的子类.
  *  ---
  *  @typedef { object } Node
- *  @property { array } $assets - 节点中的 Assets 存储数组.
+ *  @property { Array } $assets - 节点中的 Assets 存储数组.
  *  @property { string } $uid - 节点 UID.
  *  @property { Node } $prev - 本节点对应的上一个节点的引用.
  *  @property { Node } $next - 本节点对应的下一个节点的引用.
+ *  @property { String } $nextScene - 下一个场景的 name.
  *  ---
  *  @return { Node }
  */
@@ -22,6 +23,7 @@ export default class Node {
     $prevUID = '',
     $next = null,
     $nextUID = '',
+    $nextScene = null,
     $assets = []
   }) {
     this.$uid = $uid
@@ -33,5 +35,7 @@ export default class Node {
 
     this.$next = $next
     this.$nextUID = $nextUID
+
+    this.$nextScene = $nextScene
   }
 }

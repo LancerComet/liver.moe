@@ -7,7 +7,7 @@
 <template lang="jade">
   div.game-scene-ctnr
     //- 游戏场景.
-    div.game-scene.p-r.m-
+    div.game-scene.p-r.m-auto(@click.stop="nextScene")
 
       //- 离屏缓冲节点.
       div.off-screen-cache.v-hidden
@@ -70,9 +70,8 @@
 </style>
 
 <script>
-  import * as Model from '../../model'
-
-  import initGameData from './methods.init-game-data'
+  import createStoryLine from './methods.create-story-line'
+  import loadNextStoryLine from './methods.load-next-storyline'
   import assetGenerator from './computed.asset-generator'
 
   import ChatPopup from '../chat-popup/index.vue'
@@ -81,7 +80,7 @@
   export default {
     data () {
       return {
-        storyLine: new Model.StoryLine({}),
+        storyLine: {},
         assetNodes: {}
       }
     },
@@ -91,7 +90,9 @@
     },
 
     methods: {
-      initGameData,
+      assetGenerator,
+      createStoryLine,
+      loadNextStoryLine,
 
       prevScene () {
         this.storyLine.prevScene()
@@ -99,15 +100,32 @@
 
       nextScene () {
         this.storyLine.nextScene()
+      },
+
+      globalKeyEvent () {
+        window.addEventListener('keyup', (event) => {
+          event.keyCode === 37 && this.prevScene();
+          (event.keyCode === 13 || event.keyCode === 39) && this.nextScene()
+        })
       }
     },
 
     watch: {
-      'storyLine.$currentNode': assetGenerator
+      'storyLine.$currentNode': currentNodeWatcher
     },
 
     ready () {
-      this.initGameData()
+      this.createStoryLine('SCENE_01')
+      this.globalKeyEvent()
     }
+  }
+
+  /**
+   *  storyLine.$currentNode 监视回调函数.
+   *  @return void
+   */
+  function currentNodeWatcher () {
+    this.assetGenerator()
+    this.loadNextStoryLine()
   }
 </script>

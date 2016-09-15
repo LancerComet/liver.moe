@@ -7,7 +7,7 @@
  *  @constructor
  *
  *  @typedef { Node } NodeOption
- *  @property { string } character - 当前选项对应的角色.
+ *  @property { string } $type - 当前节点类型.
  *  @property { string } dialog - 当前选项内容.
  *  ---
  *  参数:
@@ -22,11 +22,11 @@ import Node from './class.node'
 
 export default class NodeOption extends Node {
   constructor ({
-    $uid, $prev, $prevUID, $next, $nextUID,
+    $uid, $prev, $prevUID, $next, $nextUID, $nextScene,  // Super.
     options = [],
     assets = {}
   }) {
-    super({ $uid, $prev, $prevUID, $next, $nextUID, $assets: assets })
+    super({ $uid, $prev, $prevUID, $next, $nextUID, $assets: assets, $nextScene })
     this.$type = 'option'
     this.options = options
   }

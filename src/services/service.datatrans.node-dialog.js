@@ -10,6 +10,7 @@ import { NodeDialog, NodeDialogParam } from '../model'
  *  @property { Array } dialog
  *  @property { Object } assets
  *  @property { String } next
+ *  @property { String } nextScene
  *
  *  @param { nodeInfo } nodeInfo
  */
