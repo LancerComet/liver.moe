@@ -7,7 +7,13 @@
 <template lang="jade">
   div.game-scene-ctnr
     //- 游戏场景.
-    div.game-scene.p-r.m-auto
+    div.game-scene.p-r.m-
+
+      //- 离屏缓冲节点.
+      div.off-screen-cache.v-hidden
+        div(v-for="asset in storyLine.$currentNode.$next.$assets", :class="asset")
+        div(v-for="linkedOptionNode in storyLine.findLinkedNodes()")
+          div(v-for="asset in linkedOptionNode.$assets", :class="asset")
 
       //- 场景物件.
       div.asset-ctnr.h-100
@@ -28,8 +34,6 @@
     div.ui-widgets-ctnr.t-c
       button(@click="prevScene") prevScene
       button(@click="nextScene") nextScene
-
-    //- 离屏缓冲节点.
 
 </template>
 

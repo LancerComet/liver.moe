@@ -90,8 +90,10 @@ export default class StoryLine {
     if (!nextSceneNode) return false  // 如果没有下一个场景节点则返回 false.
 
     // 设置节点信息.
-    nextSceneNode.$prev = this.$currentNode
     nextSceneNode.$prevUID = this.$currentNode.$uid
+    nextSceneNode.$prev = this.$currentNode
+    nextSceneNode.$next = this.findNode(nextSceneNode.$nextUID)
+
     return nextSceneNode
   }
 
@@ -149,6 +151,16 @@ export default class StoryLine {
     // 将节点登记在 this.$nodes 对象中.
     this.$nodes[nodeUID] = newNode
     return true
+  }
+
+  /**
+   *  查找选项节点的关联对话节点.
+   *  如果当前节点为选项节点, 查找出接下来的关联节点.
+   *  @ return { Array }
+   */
+  findLinkedNodes (optionNode = this.$currentNode) {
+    if (optionNode.$type !== 'option' || !optionNode.options) return []
+    return optionNode.options.map(optionData => this.findNode(optionData.gotoUID))
   }
 
   /**

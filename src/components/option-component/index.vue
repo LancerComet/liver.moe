@@ -34,7 +34,6 @@
 </style>
 
 <script>
-  import EventBus from '../../event-bus'
   /**
    *  传入参数: 对话数据存储数组对象.
    *  ---
@@ -63,12 +62,6 @@
           return false
         }
       }
-    },
-
-    ready () {
-      EventBus.$on('Option:choose', (option) => {
-
-      })
     }
   }
 </script>
