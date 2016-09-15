@@ -29,8 +29,7 @@
       button(@click="prevScene") prevScene
       button(@click="nextScene") nextScene
 
-    //- Debug Panel.
-    - console.log(process.env.NODE_ENV)
+    //- 离屏缓冲节点.
 
 </template>
 

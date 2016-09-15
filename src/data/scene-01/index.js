@@ -4,7 +4,7 @@
  *  ---
  *  场景 01 数据.
  */
-
+import * as utils from '../../utils'
 import './scene-01.styl'
 const $scenePrefix = 'scene-01'
 
@@ -28,7 +28,6 @@ const sceneData = [
       { character: '33', content: 'Test~ 嗯~ 貌似连上了呢', className: 'dialog-pop-normal' }
     ],
     assets: {
-      'bg': `${$scenePrefix} bg`,
       '33': `${className[33]} normal`
     }
   },
@@ -96,18 +95,7 @@ const sceneData = [
   }
 ]
 
-console.log(process.env.NODE_ENV)
-
-// 设置默认数据.
-sceneData.forEach((item, index) => {
-  // 设置默认 assets 属性.
-  if (!item.assets) item.assets = {}
-
-  // 设置节点默认 next.
-  if (sceneData[index + 1]) {
-    if (item.next === null) return
-    item.next = sceneData[index + 1].uid
-  }
-})
+// 数据预处理.
+utils.sceneData.dataPretreatment(sceneData)
 
 export default sceneData
