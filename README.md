@@ -1,6 +1,6 @@
 # liver-moe
 
-> A Small Galgame Framework Prototype.
+> A Tiny Galgame Framework Prototype.
 
 ## Build Setup
 

@@ -5,6 +5,15 @@
     Game Scene Component.
 -->
 <template lang="jade">
+  //- Debug Panel.
+  div.debug-panel.f-l
+    div currentNode: {{storyLine.$currentNode.$uid}}
+    div prevNode: {{storyLine.$currentNode.$prev ? storyLine.$currentNode.$prev.$uid : 'null'}}
+    div nextNode: {{storyLine.$currentNode.$nextUID || 'null'}}
+    hr
+    div currentScene: {{storyLine.$name}}
+    div(v-if="storyLine.$currentNode.$next.$nextScene") nextScene: {{storyLine.$currentNode.$next.$nextScene}}
+
   div.game-scene-ctnr
     //- 游戏场景.
     div.game-scene.p-r.m-auto(@click.stop="nextScene")
